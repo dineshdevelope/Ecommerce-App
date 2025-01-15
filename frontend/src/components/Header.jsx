@@ -17,6 +17,13 @@ const Header = ({ cardItems }) => {
         <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
           <Search />
         </div>
+        <div className="py-3">
+          <Link to={"/showproduct"}>
+            <span className="font-semibold  bg-yellow-500 p-2 rounded-full cursor:pointer ">
+              Add product
+            </span>
+          </Link>
+        </div>
 
         {/* Cart */}
         <div className="text-center">
