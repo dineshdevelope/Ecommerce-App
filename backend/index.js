@@ -12,6 +12,15 @@ connectDB();
 
 app.use(express.json());
 app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      "http://localhost:5173",
+      "https://ecommerce-app-client-delta.vercel.app/",
+    ],
+  })
+);
 app.use(express.urlencoded({ extented: true }));
 app.use("/", productRoute);
 app.use("/", orderRoute);
