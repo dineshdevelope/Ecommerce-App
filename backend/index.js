@@ -4,8 +4,6 @@ import productRoute from "./routes/product.route.js";
 import orderRoute from "./routes/order.route.js";
 import connectDB from "./lib/db.js";
 import cors from "cors";
-import path from "path";
-
 const app = express();
 
 dotenv.config();
@@ -14,7 +12,6 @@ connectDB();
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static("uploads"));
 app.use(express.urlencoded({ extented: true }));
 app.use("/", productRoute);
 app.use("/", orderRoute);

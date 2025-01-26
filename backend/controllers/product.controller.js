@@ -1,6 +1,4 @@
 import ProductModel from "../models/product.model.js";
-import ImageModel from "../models/image.model.js";
-import path from "path";
 export const getProduct = async (req, res) => {
   try {
     // 1. Get the query parameters from the URL
@@ -46,7 +44,6 @@ export const addProduct = async (req, res) => {
     category: req.body.category,
     seller: req.body.seller,
     stock: req.body.stock,
-    numOfReviews: req.body.numOfReviews,
     images: req.body.images,
   });
 
@@ -62,62 +59,38 @@ export const addProduct = async (req, res) => {
   }
 };
 
-export const editProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
   try {
-    console.log("Edit");
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
+    const updatedProduct = await ProductModel.findOneAndUpdate(
+      { _id: req.params.id },
 
-export const addImage = async (req, res) => {
-  /*  try {
-
-    const newImage = new ImageModel({
-      name: req.body.name,
-      image: {
-        data: req.body.name,
-        image: {
-          data: req.file.filename,
-          contentType: "image/png",
-        },
+      {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        ratings: req.body.ratings,
+        images: req.body.images,
+        category: req.body.category,
+        seller: req.body.seller,
+        stock: req.body.stock,
       },
-    });
-    const result = await newImage.save();
-    res.status(201).send(result);
+
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+
+export const deleteProduct = async (req, res) => {
+  try {
+    await ProductModel.findOneAndDelete({ _id: req.params.id });
+    res.json({ message: "Product Deleted" });
   } catch (error) {
     res.status(404).json({ message: error.message });
-  } */
-  try {
-    console.log(req.file);
-    const { path, filename } = req.file;
-    const image = await ImageModel({ path, filename });
-    await image.save();
-    res.send({ msg: "Image Uploaded" });
-  } catch (error) {
-    res.send({ error: "Unable to upload Image" });
-  }
-};
-
-const __dirname = path.resolve();
-export const getImage = async (req, res) => {
-  try {
-    const image = await ImageModel.findById(req.params.id);
-    console.log(image);
-
-    if (!image) res.send({ msg: "Image not found" });
-    const imagePath = path.join(__dirname, "uploads", image.filename);
-    res.sendFile(imagePath);
-  } catch (error) {
-    res.send({ error: "Unable to get Image" });
-  }
-};
-
-export const getAllImages = async (req, res) => {
-  try {
-    const images = await ImageModel.find();
-    res.status(200).json(images);
-  } catch (error) {
-    res.send({ error: "Unable to get All Images" });
   }
 };

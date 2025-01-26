@@ -2,13 +2,14 @@ import { Schema, model } from "mongoose";
 
 const schema = new Schema({
   name: String,
-  price: String,
+  price: Number,
   description: String,
-  ratings: String,
-  images: {
-    data: Buffer,
-    contentType: String,
-  },
+  ratings: Number,
+  images: [
+    {
+      image: String,
+    },
+  ],
   category: String,
   seller: String,
   stock: String,

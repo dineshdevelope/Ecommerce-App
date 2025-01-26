@@ -5,11 +5,7 @@ const ProductCard = ({ item }) => {
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <img
-        src={
-          item.images == 0
-            ? "https://images.ctfassets.net/ihx0a8chifpc/gPyHKDGI0md4NkRDjs4k8/36be1e73008a0181c1980f727f29d002/avatar-placeholder-generator-500x500.jpg?w=1920&q=60&fm=webp"
-            : item.images[0].image
-        }
+        src={item.images[0].image}
         alt={item.name}
         className="w-full h-48 object-cover"
       />
