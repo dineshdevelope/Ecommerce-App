@@ -17,7 +17,7 @@ app.use(
     credentials: true,
     origin: [
       "http://localhost:5173",
-      "https://ecommerce-app-client-delta.vercel.app/",
+      "https://ecommerce-app-client-delta.vercel.app",
     ],
   })
 );

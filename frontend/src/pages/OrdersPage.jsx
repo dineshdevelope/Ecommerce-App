@@ -11,7 +11,6 @@ const OrdersPage = () => {
       try {
         const response = await axios.get(`${apiUrl}/order`);
         setOrders(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
