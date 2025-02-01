@@ -62,7 +62,7 @@ const AdminProductCard = ({ item, onDelete }) => {
           </div>
         </div>
         <p className="text-xl font-bold text-gray-900 mb-4">${item.price}</p>
-        <div className="flex justify-center items-center justify-between ">
+        <div className="flex  items-center justify-around ">
           <button
             onClick={handleNavigation}
             className="py-2 px-2.5 text-center bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
